@@ -1,0 +1,91 @@
+{% extends "ResultadoBase.html" %}
+
+{% block title %}
+Directorio Virtual - Resutado de búsqueda
+{% endblock %}
+ 
+{% block content %}
+
+ 
+<!-- Icons Grid -->
+<!-- <section class="features-icons bg-light text-center">
+      <div class="container">
+        <div class="row">
+            <table id="tResultado"  class="table"> 
+          <thead>
+              <tr>
+                  <th>#</th>
+                  <th>imagen</th>
+                  <th>nombre</th>
+                  <th>descripcion</th>
+              </tr>
+          </thead>
+          {% for oResultado in oResultados %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td ><img WIDTH="150" src="http://directoriov.com:8000/{{oResultado.imagen}}" alt=""></td>
+            <td>{{oResultado.nombre}}</td>
+            <td>{{oResultado.descripcion}}</td>
+            
+          </tr>
+
+          {% endfor %}
+          
+        </table>
+
+        <div class="col-lg-1 col-sm-1 col-md-1 col-sm-1 col-xs-1" style="background-color:transparent:0px; height:12px;"></div>
+          {% for oResultado in oResultados %}
+
+              <div class="col-lg-2 col-sm-2 col-md-12 col-sm-12 col-xs-12"><img src="http://directoriov.com:8000/{{oResultado.imagen}}" width="140" height="90" alt=""></div>
+              <div class="col-lg-8 col-sm-8 col-md-8 col-sm-8 col-xs-8">
+                <b>{{oResultado.nombre}}</b>
+                <br>
+                {{oResultado.descripcion}}
+                <br>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-half-full"></i>
+                <i class="fa fa-star-half-full"></i>
+                <i class="fa fa-star-half-full"></i>
+                <i class="fa fa-keyboard-o">{{oResultado.categoriaTexto}}</i>
+              </div>
+              <div class="col-lg-2 col-sm-1 col-md-1 col-sm-0 col-xs-0"></div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+ -->
+<div style="width:auto; height:auto;">
+      <div class="container">
+        <h1></h1>
+          {% for oResultado in oResultados %}
+
+            <div class="row ">
+
+              <div class="col-lg-1 col-sm-1 col-md-1 col-sm-1 col-xs-1" style="background-color:transparent:0px; height:12px;"></div>
+              <div class="col-lg-2 col-sm-2 col-md-12 col-sm-12 col-xs-12"><img src="http://directoriov.com:8000/{{oResultado.imagen}}" width="140" height="90" alt=""></div>
+              <div class="col-lg-8 col-sm-8 col-md-8 col-sm-8 col-xs-8"> <!--lg==> para alargar  el texto-->
+                <b>{{oResultado.nombre}}</b>
+                <br>
+                {{oResultado.descripcion}}
+                <br>
+                {% for raiting in oResultado.raitingEntero %}
+                    <i class="fa fa-star"></i>
+                {% endfor %}
+
+                {% if oResultado.raitingPacial > 0 %}
+                    <i class="fa fa-star-half-full"></i>
+                {% endif %}
+                {% for raitingFalta in oResultado.raitingFaltante %}
+                  <i class="fa fa-star-o"></i>
+                {% endfor %}
+                <i class="fa fa-keyboard-o">{{oResultado.categoriaTexto}}</i>
+              </div>
+              <div class="col-lg-2 col-sm-1 col-md-1 col-sm-0 col-xs-0"></div>
+
+          </div>
+          {% endfor %}
+
+      </div>
+    </div>
+{% endblock %}
